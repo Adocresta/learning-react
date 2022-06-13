@@ -1,13 +1,3 @@
-ReactDOM.render(<h1>Hello World!</h1>, document.getElementById("root"));
-
-ReactDOM.render(
-  <ul>
-    <li>First Learn React</li>
-    <li>Second Build App</li>
-  </ul>,
-  document.querySelector("#root")
-);
-
 function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -103,3 +93,12 @@ ReactDOM.render(
   </div>,
   document.getElementById("root")
 );
+
+// vanilla javascript way to do it
+
+const h = document.createElement("h1");
+h.innerText = "Vanilla Way";
+const root = document.querySelector("#root");
+
+console.log(root);
+root.append(h);
