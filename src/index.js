@@ -4,15 +4,19 @@ import "./index.css";
 // import App from './App';
 import reportWebVitals from "./reportWebVitals";
 
-// fragment tags for a parent element
-function Page() {
+// I will put header into a seperate componenet
+function Header() {
+  return (
+    <header>
+      <nav>
+        <img width="40px" src="logo512.png" alt="logo" />
+      </nav>
+    </header>
+  );
+}
+function MainContent() {
   return (
     <>
-      <header>
-        <nav>
-          <img width="40px" src="logo512.png" alt="logo" />
-        </nav>
-      </header>
       <h1>Why I am learning React?</h1>
       <ol>
         <li>
@@ -20,7 +24,25 @@ function Page() {
         </li>
         <li>I'm more likely to get a job as a developer if I know React</li>
       </ol>
-      <footer>© 2022 Adocreta development. All rights reserved.</footer>
+    </>
+  );
+}
+
+function Footer() {
+  return (
+    <footer>
+      <small>© 2022 Adocresta development. All rights reserved.</small>
+    </footer>
+  );
+}
+
+// fragment tags for a parent element
+function Page() {
+  return (
+    <>
+      <Header />
+      <MainContent />
+      <Footer />
     </>
   );
 }
