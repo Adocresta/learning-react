@@ -6,6 +6,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import MainContent from "./MainContent";
 import reportWebVitals from "./reportWebVitals";
+import ExpenseItem from "./components/ExpenseItem";
 
 // fragment tags for a parent element
 function Page() {
@@ -13,6 +14,7 @@ function Page() {
     <>
       <Header />
       <MainContent />
+      <ExpenseItem></ExpenseItem>
       <Footer />
     </>
   );
