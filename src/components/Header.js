@@ -1,8 +1,10 @@
+import logo from "../logo.svg";
+
 export default function Header() {
   return (
     <header>
       <nav>
-        <img className="nav-logo" src="./logo512.png" alt="logo" />
+        <img src={logo} className="App-logo nav-logo" alt="logo" />
         <ul className="nav-items">
           <li>
             <a href="">Pricing</a>

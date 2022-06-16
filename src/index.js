@@ -1,29 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-// import App from './App';
-import Header from "./Header";
-import Footer from "./Footer";
-import MainContent from "./MainContent";
+import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import ExpenseItem from "./components/ExpenseItem";
-
-// fragment tags for a parent element
-function Page() {
-  return (
-    <>
-      <Header />
-      <MainContent />
-      <ExpenseItem></ExpenseItem>
-      <Footer />
-    </>
-  );
-}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Page />
+    <App />
   </React.StrictMode>
 );
 
