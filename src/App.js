@@ -1,8 +1,8 @@
 import "./App.css";
-import Header from "./components/Header";
+import Header from "./components/UI/Header";
 import MainContent from "./components/MainContent";
-import Footer from "./components/Footer";
-import Expenses from "./components/Expenses";
+import Footer from "./components/UI/Footer";
+import Expenses from "./components/Expenses/Expenses";
 import React from "react";
 
 // fragment tags for a parent element

@@ -1,4 +1,4 @@
-import Card from "./Card";
+import Card from "./UI/Card";
 import "./MainContent.css";
 
 export default function MainContent() {
