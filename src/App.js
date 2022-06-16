@@ -34,6 +34,7 @@ function App() {
       <Header />
       <MainContent />
       <Expenses expenses={expenses} />
+      <Expenses expenses={expenses} />
       <Footer />
     </React.Fragment>
   );

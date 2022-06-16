@@ -1,13 +1,16 @@
+import Card from "./Card";
+import "./MainContent.css";
+
 export default function MainContent() {
   return (
-    <>
-      <h1>Why I am learning React?</h1>
-      <ol>
+    <Card className="project-info">
+      <h1>Why I am building this project?</h1>
+      <ul>
         <li>
-          It's a popular library, so I'll be able to fit in with the cool kids!
+          This is a hands-on learning experience which means that I learn react
+          with a project-based approach.
         </li>
-        <li>I'm more likely to get a job as a developer if I know React</li>
-      </ol>
-    </>
+      </ul>
+    </Card>
   );
 }

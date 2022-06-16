@@ -1,0 +1,9 @@
+footer {
+  position: sticky;
+  bottom: 0;
+  min-width: 700px;
+  border-radius: 10px;
+  height: 30px; /* Height of the footer */
+  /* background: rgb(19, 38, 48); */
+  color: rgba(255, 255, 255, 0.63);
+}

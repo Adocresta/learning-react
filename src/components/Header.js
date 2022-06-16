@@ -1,4 +1,5 @@
-import logo from "../logo.svg";
+import logo from "../adocresta.svg";
+import "./Header.css";
 
 export default function Header() {
   return (

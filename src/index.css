@@ -7,58 +7,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background-color: #2e7a94;
+  background-color: #4b4b4b;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-nav {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 600px;
-  border: 1px solid black;
-  box-shadow: -3px 10px 8px -5px rgba(0, 0, 0, 0.56);
-  -webkit-box-shadow: -3px 10px 8px -5px rgba(0, 0, 0, 0.56);
-  -moz-box-shadow: -3px 10px 8px -5px rgba(0, 0, 0, 0.56);
-}
-
-ul {
-  display: flex;
-  justify-content: space-between;
-  list-style: none;
-}
-li {
-  margin: 10px;
-}
-
-li > a {
-  text-decoration: none;
-  border: 1px solid #213a42;
-  background-color: #79d3f1;
-  padding: 5px;
-  border-radius: 5px;
-  transition: 1s;
-}
-
-li > a:hover,
-li > a:focus {
-  background-color: #497d8f;
-  color: white;
-}
-.nav-logo {
-  width: 60px;
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
-  min-width: 700px;
-  border-radius: 10px;
-  height: 30px; /* Height of the footer */
-  background: rgb(19, 38, 48);
-  color: white;
 }

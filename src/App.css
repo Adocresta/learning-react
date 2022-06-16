@@ -4,6 +4,9 @@
 
 .App-logo {
   pointer-events: none;
+  border-radius: 50%;
+  border: #282c34 dashed 2px;
+  margin-left: 1rem;
 }
 
 @media (prefers-reduced-motion: no-preference) {
