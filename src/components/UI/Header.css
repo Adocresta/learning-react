@@ -1,12 +1,19 @@
 nav {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
-  min-width: 700px;
+  /* width: 1000px; */
+  /* max-width: 7000px; */
   border: 1px solid black;
   box-shadow: -3px 10px 8px -5px rgba(0, 0, 0, 0.56);
   -webkit-box-shadow: -3px 10px 8px -5px rgba(0, 0, 0, 0.56);
   -moz-box-shadow: -3px 10px 8px -5px rgba(0, 0, 0, 0.56);
+}
+
+@media (max-width: 700px) {
+  nav {
+    width: auto;
+  }
 }
 
 ul {

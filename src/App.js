@@ -4,6 +4,7 @@ import MainContent from "./components/MainContent";
 import Footer from "./components/UI/Footer";
 import Expenses from "./components/Expenses/Expenses";
 import React from "react";
+import NewExpense from "./components/NewExpense/NewExpense";
 
 // fragment tags for a parent element
 function App() {
@@ -33,6 +34,7 @@ function App() {
     <React.Fragment>
       <Header />
       <MainContent />
+      <NewExpense />
       <Expenses expenses={expenses} />
       <Expenses expenses={expenses} />
       <Footer />
