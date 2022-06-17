@@ -1,12 +1,20 @@
+import { useState } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = () => {
+  const defaultTitle = "Title";
+  const [enteredTitle, setEnteredTitle] = useState(defaultTitle);
+  const titleChangeHandler = (e) => {
+    setEnteredTitle(e.target.value);
+    !e.target.value && setEnteredTitle(defaultTitle);
+  };
+
   return (
     <form>
       <div className="new-expense__controls">
         <div className="new-expense__control">
-          <label>Title</label>
-          <input type="text" />
+          <label>{enteredTitle}</label>
+          <input id="test" type="text" onChange={titleChangeHandler} />
         </div>
         <div className="new-expense__control">
           <label>Amount</label>
