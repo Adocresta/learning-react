@@ -2,54 +2,62 @@ import { useState } from "react";
 import "./ExpenseForm.css";
 
 const ExpenseForm = () => {
-  const defaultTitle = "Please Enter your expense name.";
-  // const [enteredTitle, setEnteredTitle] = useState(defaultTitle);
-  // const [enteredAmount, setEnteredAmount] = useState("Free!");
-  // const [selectedDate, setSelectedDate] = useState("");
-  // using objects as useState!
   const [userInput, setUserInput] = useState({
-    enteredTitle: defaultTitle,
-    enteredAmount: "Free!",
-    selectedDate: "Please select a date.",
+    enteredTitle: "",
+    enteredAmount: "",
+    selectedDate: "",
+  });
+
+  // to prevent submit error I added this seperate useState object to preview submit info!
+  const [previewEnteredValues, setPreviewEnteredValues] = useState({
+    defaultTitle: "Please Enter your expense name.",
+    title: "Please Enter your expense name.",
+    amount: "Please Enter the price.",
+    date: "Please select a date.",
   });
 
   const titleChangeHandler = (e) => {
-    // setEnteredTitle(e.target.value);
-    // !e.target.value && setEnteredTitle(defaultTitle);
+    const userInput = e.target.value;
 
-    setUserInput((prevState) => {
-      return { ...prevState, enteredTitle: e.target.value };
+    //setting both preview and userinput
+    setPreviewEnteredValues((prevState) => {
+      return { ...prevState, title: userInput };
     });
-    !e.target.value &&
-      setUserInput((prevState) => {
-        return { ...prevState, enteredTitle: defaultTitle };
+    setUserInput((prevState) => {
+      return { ...prevState, enteredTitle: userInput };
+    });
+    !userInput &&
+      setPreviewEnteredValues((prevState) => {
+        return { ...prevState, title: previewEnteredValues.defaultTitle };
       });
   };
 
   const amountChangeHandler = (e) => {
-    // setUserInput(e.target.value);
-    // !e.target.value && setEnteredAmount("Free!");
-    // e.target.value === "0" && setEnteredAmount("Free!");
     const userInput = parseFloat(e.target.value);
     console.log(userInput);
+    setPreviewEnteredValues((prevState) => {
+      return { ...prevState, amount: userInput };
+    });
     setUserInput((prevState) => {
       return { ...prevState, enteredAmount: userInput };
     });
-    !e.target.value | (userInput === 0) &&
-      setUserInput((prevState) => {
-        return { ...prevState, enteredAmount: "Free!" };
+    !userInput | (userInput === 0) &&
+      setPreviewEnteredValues((prevState) => {
+        return { ...prevState, amount: "Free!" };
       });
   };
 
   const dateChangeHandler = (e) => {
-    // setUserInput(e.target.value);
-    // !e.target.value && setSelectedDate("Please select a date.");
-    setUserInput((prevState) => {
-      return { ...prevState, selectedDate: e.target.value };
+    const userInput = e.target.value;
+    setPreviewEnteredValues((prevState) => {
+      return { ...prevState, date: userInput };
     });
-    !e.target.value &&
-      setUserInput((prevState) => {
-        return { ...prevState, selectedDate: "Please select a date." };
+    setUserInput((prevState) => {
+      return { ...prevState, selectedDate: userInput };
+    });
+    !userInput &&
+      setPreviewEnteredValues((prevState) => {
+        return { ...prevState, date: "Please select a date." };
       });
   };
 
@@ -64,31 +72,52 @@ const ExpenseForm = () => {
     };
 
     console.log(expenseData);
+    setUserInput(() => {
+      return { enteredAmount: "", enteredTitle: "", selectedDate: "" };
+    });
+    setPreviewEnteredValues((prevState) => {
+      return {
+        ...prevState,
+        title: previewEnteredValues.defaultTitle,
+        amount: "Please Enter the price.",
+        date: "Please select a date.",
+      };
+    });
   };
 
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
-          <label>Expense: {userInput.enteredTitle}</label>
-          <input id="test" type="text" onChange={titleChangeHandler} />
+          <label>Expense: {previewEnteredValues.title}</label>
+          <input
+            id="test"
+            type="text"
+            value={userInput.enteredTitle}
+            onChange={titleChangeHandler}
+            required
+          />
         </div>
         <div className="new-expense__control">
-          <label>Amount: ${userInput.enteredAmount}</label>
+          <label>Amount: ${previewEnteredValues.amount}</label>
           <input
             type="number"
             min="0"
             max="9999"
+            value={userInput.enteredAmount}
             onChange={amountChangeHandler}
+            required
           />
         </div>
         <div className="new-expense__control">
-          <label>Date: {userInput.selectedDate}</label>
+          <label>Date: {previewEnteredValues.date}</label>
           <input
             type="date"
             min="2019-01-01"
             max="2022-12-31"
+            value={userInput.selectedDate}
             onChange={dateChangeHandler}
+            required
           />
         </div>
       </div>
