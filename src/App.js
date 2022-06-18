@@ -30,11 +30,14 @@ function App() {
     },
   ];
 
+  const addNewExpenseHandler = (expense) => {
+    console.log(expense);
+  };
   return (
     <React.Fragment>
       <Header />
       <MainContent />
-      <NewExpense />
+      <NewExpense onNewExpense={addNewExpenseHandler} />
       <Expenses expenses={expenses} />
       <Expenses expenses={expenses} />
       <Footer />
