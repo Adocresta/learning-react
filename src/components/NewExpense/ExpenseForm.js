@@ -53,8 +53,21 @@ const ExpenseForm = () => {
       });
   };
 
+  // !todo learn how to remap object keys and values
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    const expenseData = {
+      title: userInput.enteredTitle,
+      amount: userInput.enteredAmount,
+      date: new Date(userInput.selectedDate),
+    };
+
+    console.log(expenseData);
+  };
+
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Expense: {userInput.enteredTitle}</label>
