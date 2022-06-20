@@ -32,6 +32,8 @@ const ExpenseForm = (props) => {
       });
   };
 
+  // this is function form of useState
+  // !You need funtion form if your new state depends on previous state
   const amountChangeHandler = (e) => {
     const userInput = parseFloat(e.target.value);
     console.log(userInput);
