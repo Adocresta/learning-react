@@ -12,35 +12,25 @@ function Expenses(props) {
   const yearFilterHandler = (selectedYear) => {
     console.log(selectedYear);
     setSelectedYearValue(selectedYear);
-    // !Dont create new funtion here it uses old selectedYearValue
-    // const newArray = filteredExpenses.filter(
-    //   (expense) => expense.date.getFullYear() === parseInt(selectedYearValue)
-    // );
-    // console.log(newArray);
-    // setFilteredExpenses(
-    //   expenses.filter(
-    //     (expense) => expense.date.getFullYear() === parseInt(selectedYearValue)
-    //   )
-    // );
+    // !Dont create new array here👇 it uses old selectedYearValue instead pass year as parameter in jsx
   };
 
-  // Create a new array inside take date and check every object inside it with filter
-  // this returns also a new array which save it inside the funtion
-  // and we map this array to creat dynamic html(jsx)
-  const createExpenseItemArray = (expenses, date) => {
-    const newArray = expenses.filter(
-      (expense) => expense.date.getFullYear() === parseInt(date)
-    );
-    return newArray.map((element) => {
-      return (
-        <ExpenseItem
-          title={element.title}
-          amount={element.amount}
-          date={element.date}
-          key={element.id}
-        />
-      );
-    });
+  // filter stuff and map it directly no exstra step needed! filter won't effect original array just creates new one
+  const createExpenseItemArray = (expenses, _selectedYear) => {
+    return expenses
+      .filter(
+        (expense) => expense.date.getFullYear().toString() === _selectedYear
+      )
+      .map((element) => {
+        return (
+          <ExpenseItem
+            title={element.title}
+            amount={element.amount}
+            date={element.date}
+            key={element.id}
+          />
+        );
+      });
   };
 
   return (
