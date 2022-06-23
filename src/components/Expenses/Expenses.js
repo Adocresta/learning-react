@@ -17,11 +17,15 @@ function Expenses(props) {
 
   // filter stuff and map it directly no exstra step needed! filter won't effect original array just creates new one
   const createExpenseItemArray = (expenses, _selectedYear) => {
-    return expenses
-      .filter(
-        (expense) => expense.date.getFullYear().toString() === _selectedYear
-      )
-      .map((element) => {
+    const filteredExpenses = expenses.filter(
+      (expense) => expense.date.getFullYear().toString() === _selectedYear
+    );
+    console.log(filteredExpenses);
+    // checking if there is no data to show and inform the user
+    if (filteredExpenses.length === 0) {
+      return <p>No Expenses found.</p>;
+    } else {
+      return filteredExpenses.map((element) => {
         return (
           <ExpenseItem
             title={element.title}
@@ -31,6 +35,7 @@ function Expenses(props) {
           />
         );
       });
+    }
   };
 
   return (

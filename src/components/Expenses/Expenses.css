@@ -5,3 +5,7 @@
   width: 50rem;
   max-width: 95%;
 }
+
+.expenses p {
+  color: rgb(209, 209, 209);
+}
