@@ -85,6 +85,13 @@ const ExpenseForm = (props) => {
         date: "Please select a date.",
       };
     });
+    props.onCloseButtonClicked();
+  };
+
+  const closeNewExpenseBar = (e) => {
+    e.preventDefault();
+    console.log("bar is closed");
+    props.onCloseButtonClicked();
   };
 
   return (
@@ -124,6 +131,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button onClick={closeNewExpenseBar}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>

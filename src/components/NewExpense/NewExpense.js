@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ExpenseForm from "./ExpenseForm";
 import "./NewExpense.css";
 
@@ -10,9 +11,31 @@ const NewExpense = (props) => {
     // sending data up!
     props.onNewExpense(expenseData);
   };
+
+  const [showBar, setShowBar] = useState(false);
+
+  const hiddenExpenseForm = (
+    <button
+      onClick={() => {
+        setShowBar(true);
+      }}
+    >
+      Add New Expense!
+    </button>
+  );
+
+  const shownExpenseForm = (
+    <ExpenseForm
+      onExpenseFormSave={expenseformSaveHandler}
+      onCloseButtonClicked={() => {
+        setShowBar(false);
+      }}
+    />
+  );
+
   return (
     <div className="new-expense">
-      <ExpenseForm onExpenseFormSave={expenseformSaveHandler} />
+      {showBar ? shownExpenseForm : hiddenExpenseForm}
     </div>
   );
 };
