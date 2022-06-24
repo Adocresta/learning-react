@@ -4,6 +4,7 @@ import "./Expenses.css";
 import Card from "../UI/Card";
 import ExpensesFilter from "../ExpensesFilter/ExpensesFilter";
 import ExpensesList from "../ExpensesFilter/ExpensesList";
+import ExpensesChart from "./ExpensesChart";
 
 function Expenses(props) {
   // Destructuring in Objects
@@ -22,6 +23,10 @@ function Expenses(props) {
 
   return (
     <Card className="expenses">
+      <ExpensesChart
+        expenses={filteredExpenses}
+        selectedYear={selectedYearValue}
+      />
       <ExpensesFilter
         selected={selectedYearValue}
         onYearSelected={yearFilterHandler}

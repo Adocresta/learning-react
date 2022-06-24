@@ -72,10 +72,17 @@ const ExpenseForm = (props) => {
       amount: userInput.enteredAmount,
       date: new Date(userInput.selectedDate),
     };
+    console.log(expenseData);
 
     props.onExpenseFormSave(expenseData);
+
+    // closes the bar after submit
+    props.onCloseButtonClicked();
+  };
+
+  const resetValues = () => {
     setUserInput(() => {
-      return { enteredAmount: "", enteredTitle: "", selectedDate: "" };
+      return { enteredAmount: "0", enteredTitle: "", selectedDate: "" };
     });
     setPreviewEnteredValues((prevState) => {
       return {
@@ -85,12 +92,10 @@ const ExpenseForm = (props) => {
         date: "Please select a date.",
       };
     });
-    props.onCloseButtonClicked();
   };
 
+  // closes the bar without saving
   const closeNewExpenseBar = (e) => {
-    e.preventDefault();
-    console.log("bar is closed");
     props.onCloseButtonClicked();
   };
 
@@ -131,7 +136,12 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
-        <button onClick={closeNewExpenseBar}>Cancel</button>
+        <button type="button" onClick={closeNewExpenseBar}>
+          Cancel
+        </button>
+        <button type="button" onClick={resetValues}>
+          Reset
+        </button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
