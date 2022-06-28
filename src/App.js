@@ -4,9 +4,12 @@ import React, { useState } from "react";
 import Header from "./components/UI/Header";
 import MainContent from "./components/MainContent";
 import Footer from "./components/UI/Footer";
-
+// Expense Tracker Files
 import Expenses from "./components/ExpenseTracker/Expenses/Expenses";
 import NewExpense from "./components/ExpenseTracker/NewExpense/NewExpense";
+// Username Tracker Files
+import AddUserPanel from "./components/UsernameTracker/AddUserPanel/AddUserPanel";
+import UserDataList from "./components/UsernameTracker/UserDataList/UserDataList";
 
 // fragment tags for a parent element
 function App() {
@@ -68,6 +71,33 @@ function App() {
     });
   };
 
+  const [userData, setUserData] = useState([
+    {
+      id: "e1",
+      username: "Adocresta",
+      age: 22,
+    },
+    {
+      id: "e2",
+      username: "Adosta",
+      age: 22,
+    },
+  ]);
+
+  const addNewUserDataHandler = (data) => {
+    console.log(data);
+    setUserData((prevState) => {
+      return [
+        {
+          id: data.id,
+          username: data.username,
+          age: data.age,
+        },
+        ...prevState,
+      ];
+    });
+  };
+
   // Show or hide the project
   const [showExpenseTracker, setShowExpenseTracker] = useState(false);
 
@@ -87,6 +117,8 @@ function App() {
       <Header onShowExpenseTracker={toggleExpenseTracker} />
       <MainContent />
       {showExpenseTracker && ExpenseTracker}
+      <AddUserPanel onNewUserData={addNewUserDataHandler} />
+      <UserDataList userData={userData} />
       <Footer />
     </React.Fragment>
   );
