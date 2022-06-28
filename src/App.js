@@ -1,10 +1,12 @@
 import "./App.css";
+import React, { useState } from "react";
+
 import Header from "./components/UI/Header";
 import MainContent from "./components/MainContent";
 import Footer from "./components/UI/Footer";
-import Expenses from "./components/Expenses/Expenses";
-import React, { useState } from "react";
-import NewExpense from "./components/NewExpense/NewExpense";
+
+import Expenses from "./components/ExpenseTracker/Expenses/Expenses";
+import NewExpense from "./components/ExpenseTracker/NewExpense/NewExpense";
 
 // fragment tags for a parent element
 function App() {
@@ -65,13 +67,26 @@ function App() {
       ];
     });
   };
-  return (
-    <React.Fragment>
-      <Header />
-      <MainContent />
+
+  // Show or hide the project
+  const [showExpenseTracker, setShowExpenseTracker] = useState(false);
+
+  const toggleExpenseTracker = () => {
+    setShowExpenseTracker((prevState) => !prevState);
+  };
+
+  const ExpenseTracker = (
+    <>
       <NewExpense onNewExpense={addNewExpenseHandler} />
       <Expenses expenses={expenses} />
-      <Expenses expenses={expenses} />
+    </>
+  );
+
+  return (
+    <React.Fragment>
+      <Header onShowExpenseTracker={toggleExpenseTracker} />
+      <MainContent />
+      {showExpenseTracker && ExpenseTracker}
       <Footer />
     </React.Fragment>
   );
