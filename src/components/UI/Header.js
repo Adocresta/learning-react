@@ -13,10 +13,12 @@ export default function Header(props) {
             </a>
           </li>
           <li>
-            <a href="#">About</a>
+            <a href="#" onClick={props.onShowAbout}>
+              About
+            </a>
           </li>
           <li>
-            <a href="#">Contant</a>
+            <a href="#">Content</a>
           </li>
         </ul>
       </nav>
