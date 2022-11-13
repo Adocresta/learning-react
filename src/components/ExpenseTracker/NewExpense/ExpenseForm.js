@@ -8,28 +8,13 @@ const ExpenseForm = (props) => {
     selectedDate: "",
   });
 
-  // to prevent submit error I added this seperate useState object to preview submit info!
-  const [previewEnteredValues, setPreviewEnteredValues] = useState({
-    defaultTitle: "Please Enter your expense name.",
-    title: "Please Enter your expense name.",
-    amount: "Please Enter the price.",
-    date: "Please select a date.",
-  });
-
   const titleChangeHandler = (e) => {
     const userInput = e.target.value;
 
-    //setting both preview and userinput
-    setPreviewEnteredValues((prevState) => {
-      return { ...prevState, title: userInput };
-    });
+    //setting user input
     setUserInput((prevState) => {
       return { ...prevState, enteredTitle: userInput };
     });
-    !userInput &&
-      setPreviewEnteredValues((prevState) => {
-        return { ...prevState, title: previewEnteredValues.defaultTitle };
-      });
   };
 
   // this is function form of useState
@@ -37,30 +22,16 @@ const ExpenseForm = (props) => {
   const amountChangeHandler = (e) => {
     const userInput = parseFloat(e.target.value);
     console.log(userInput);
-    setPreviewEnteredValues((prevState) => {
-      return { ...prevState, amount: userInput };
-    });
     setUserInput((prevState) => {
       return { ...prevState, enteredAmount: userInput };
     });
-    !userInput | (userInput === 0) &&
-      setPreviewEnteredValues((prevState) => {
-        return { ...prevState, amount: "Free!" };
-      });
   };
 
   const dateChangeHandler = (e) => {
     const userInput = e.target.value;
-    setPreviewEnteredValues((prevState) => {
-      return { ...prevState, date: userInput };
-    });
     setUserInput((prevState) => {
       return { ...prevState, selectedDate: userInput };
     });
-    !userInput &&
-      setPreviewEnteredValues((prevState) => {
-        return { ...prevState, date: "Please select a date." };
-      });
   };
 
   // !todo learn how to remap object keys and values
@@ -84,14 +55,6 @@ const ExpenseForm = (props) => {
     setUserInput(() => {
       return { enteredAmount: "0", enteredTitle: "", selectedDate: "" };
     });
-    setPreviewEnteredValues((prevState) => {
-      return {
-        ...prevState,
-        title: previewEnteredValues.defaultTitle,
-        amount: "Please Enter the price.",
-        date: "Please select a date.",
-      };
-    });
   };
 
   // closes the bar without saving
@@ -103,7 +66,7 @@ const ExpenseForm = (props) => {
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
-          <label>Expense: {previewEnteredValues.title}</label>
+          <label>Expense:</label>
           <input
             id="test"
             type="text"
@@ -113,7 +76,7 @@ const ExpenseForm = (props) => {
           />
         </div>
         <div className="new-expense__control">
-          <label>Amount: ${previewEnteredValues.amount}</label>
+          <label>Amount:</label>
           <input
             type="number"
             min="0"
@@ -124,7 +87,7 @@ const ExpenseForm = (props) => {
           />
         </div>
         <div className="new-expense__control">
-          <label>Date: {previewEnteredValues.date}</label>
+          <label>Date:</label>
           <input
             type="date"
             min="2019-01-01"
