@@ -1,0 +1,29 @@
+.add-user {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
+  color: white;
+}
+
+.add-user__input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.add-user__input label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: inline;
+  padding-right: 2rem;
+}
+
+.add-user__button {
+  text-align: right;
+  margin-right: 25%;
+}

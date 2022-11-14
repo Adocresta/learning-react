@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import "./AddUserPanel.css";
 
 const AddUserPanel = (props) => {
   const [username, setUserName] = useState("");
@@ -27,11 +28,19 @@ const AddUserPanel = (props) => {
 
   return (
     <form onSubmit={SubmitEvetHandler}>
-      <label>Username</label>
-      <input type="text" onChange={usernameChangeHandler} />
-      <label>Age</label>
-      <input type="text" onChange={ageChangeHandler} />
-      <button type="submit">Add User</button>
+      <div className="add-user">
+        <div className="add-user__input">
+          <label>Username:</label>
+          <input type="text" onChange={usernameChangeHandler} />
+        </div>
+        <div className="add-user__input">
+          <label>Age:</label>
+          <input type="text" onChange={ageChangeHandler} />
+        </div>
+        <div className="add-user__button">
+          <button type="submit">Add User</button>
+        </div>
+      </div>
     </form>
   );
 };

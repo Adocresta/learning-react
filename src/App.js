@@ -10,6 +10,7 @@ import NewExpense from "./components/ExpenseTracker/NewExpense/NewExpense";
 // Username Tracker Files
 import AddUserPanel from "./components/UsernameTracker/AddUserPanel/AddUserPanel";
 import UserDataList from "./components/UsernameTracker/UserDataList/UserDataList";
+import Card from "./components/UI/Card";
 
 function App() {
   // Expense Tracker Datas
@@ -110,8 +111,10 @@ function App() {
       />
       {showAbout && AboutSection}
       {showExpenseTracker && ExpenseTracker}
-      <AddUserPanel onNewUserData={addNewUserDataHandler} />
-      <UserDataList userData={userData} />
+      <Card className="username-tracker">
+        <AddUserPanel onNewUserData={addNewUserDataHandler} />
+        <UserDataList userData={userData} />
+      </Card>
       <Footer />
     </React.Fragment>
   );
