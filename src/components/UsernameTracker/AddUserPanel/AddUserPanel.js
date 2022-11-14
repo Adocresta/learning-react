@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import Card from "../../UI/Card";
 import "./AddUserPanel.css";
 
 const AddUserPanel = (props) => {
@@ -27,21 +28,21 @@ const AddUserPanel = (props) => {
   };
 
   return (
-    <form onSubmit={SubmitEvetHandler}>
-      <div className="add-user">
+    <Card className="add-user">
+      <form onSubmit={SubmitEvetHandler}>
         <div className="add-user__input">
-          <label>Username:</label>
-          <input type="text" onChange={usernameChangeHandler} />
+          <label htmlFor="username">Username:</label>
+          <input type="text" id="username" onChange={usernameChangeHandler} />
         </div>
         <div className="add-user__input">
-          <label>Age:</label>
-          <input type="text" onChange={ageChangeHandler} />
+          <label htmlFor="age">Age:</label>
+          <input type="number" id="age" onChange={ageChangeHandler} />
         </div>
         <div className="add-user__button">
           <button type="submit">Add User</button>
         </div>
-      </div>
-    </form>
+      </form>
+    </Card>
   );
 };
 
