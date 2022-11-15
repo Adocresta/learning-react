@@ -19,6 +19,30 @@ module.exports = {
         veryPaleRed: "hsl(13, 100%, 96%)",
         veryLightGray: "hsl(0, 0%, 98%)",
       },
+      boxShadow: {
+        "header-shadow":
+          "0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12)",
+      },
+      animation: {
+        "spin-slow": "spin 1s linear infinite",
+        wiggle: "wiggle 1s ease-in-out infinite",
+        "app-logo-spin": "app-logo-spin infinite 20s linear",
+      },
+      keyframes: {
+        wiggle: {
+          "0%, 100%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" },
+        },
+        // custom keyframe
+        "app-logo-spin": {
+          from: {
+            transform: "rotate(0deg)",
+          },
+          to: {
+            transform: "rotate(360deg)",
+          },
+        },
+      },
     },
   },
   plugins: [],

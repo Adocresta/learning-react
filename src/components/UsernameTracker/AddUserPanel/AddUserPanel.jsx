@@ -32,11 +32,21 @@ const AddUserPanel = (props) => {
       <form onSubmit={SubmitEvetHandler}>
         <div className="add-user__input">
           <label htmlFor="username">Username:</label>
-          <input type="text" id="username" onChange={usernameChangeHandler} />
+          <input
+            type="text"
+            id="username"
+            onChange={usernameChangeHandler}
+            className="text-black"
+          />
         </div>
         <div className="add-user__input">
           <label htmlFor="age">Age:</label>
-          <input type="number" id="age" onChange={ageChangeHandler} />
+          <input
+            type="number"
+            id="age"
+            onChange={ageChangeHandler}
+            className="text-black"
+          />
         </div>
         <div className="add-user__button">
           <button type="submit">Add User</button>

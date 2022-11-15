@@ -1,4 +1,4 @@
-import "./UserDataList.css";
+// import "./UserDataList.css";
 
 const UserDataItem = (props) => {
   const { userData } = props;
@@ -15,7 +15,7 @@ const UserDataItem = (props) => {
 const UserDataList = (props) => {
   const { userData } = props;
   return (
-    <ul className="user-data-list">
+    <ul className="flex flex-col items-center mt-10 text-white">
       <UserDataItem userData={userData} />
     </ul>
   );
