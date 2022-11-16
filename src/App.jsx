@@ -1,15 +1,15 @@
-import "./App.css";
 import React, { useState } from "react";
 
+// UI Components
 import Header from "./components/UI/Header";
 import MainContent from "./components/MainContent";
 import Footer from "./components/UI/Footer";
-// Expense Tracker Files
+// Expense Tracker Components
 import Expenses from "./components/ExpenseTracker/Expenses/Expenses";
 import NewExpense from "./components/ExpenseTracker/NewExpense/NewExpense";
-// Username Tracker Files
+// Username Tracker Components
 import AddUserPanel from "./components/UsernameTracker/AddUserPanel/AddUserPanel";
-import UserDataList from "./components/UsernameTracker/UserDataList/UserDataList";
+import UsersDataList from "./components/UsernameTracker/UserDataList/UsersDataList";
 
 function App() {
   // Expense Tracker Datas
@@ -111,7 +111,7 @@ function App() {
       {showAbout && AboutSection}
       {showExpenseTracker && ExpenseTracker}
       <AddUserPanel onNewUserData={addNewUserDataHandler} />
-      <UserDataList userData={userData} />
+      <UsersDataList usersData={userData} />
       <Footer />
     </React.Fragment>
   );

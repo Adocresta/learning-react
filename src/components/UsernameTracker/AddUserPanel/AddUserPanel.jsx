@@ -49,7 +49,7 @@ const AddUserPanel = (props) => {
             type="text"
             id="username"
             onChange={usernameChangeHandler}
-            className="text-black min-w-fit"
+            className="text-black"
             value={username}
           />
         </div>
