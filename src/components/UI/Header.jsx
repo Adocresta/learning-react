@@ -30,6 +30,13 @@ export default function Header(props) {
               Content
             </ATagButton>
           </li>
+          {props.isLoggedIn ? (
+            <li>
+              <ATagButton href="#" onClick={props.onLogout}>
+                Sign Out
+              </ATagButton>
+            </li>
+          ) : null}
         </ul>
         {/* // !TODO: implement ||| button} */}
       </nav>

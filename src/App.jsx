@@ -102,17 +102,35 @@ function App() {
 
   const AboutSection = <MainContent onShowMainContent={toggleAboutHandler} />;
 
+  // Login Menu
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const loginHandler = (email, password) => {
+    // check email and password
+    setIsLoggedIn(true);
+  };
+
+  const logoutHandler = () => {
+    setIsLoggedIn(false);
+  };
+
   return (
     <React.Fragment>
       <Header
         onShowExpenseTracker={toggleExpenseTracker}
         onShowAbout={toggleAboutHandler}
+        isLoggedIn={isLoggedIn}
+        onLogout={logoutHandler}
       />
       {showAbout && AboutSection}
       {showExpenseTracker && ExpenseTracker}
       <AddUserPanel onNewUserData={addNewUserDataHandler} />
       <UsersDataList usersData={userData} />
-      <LoginMenu></LoginMenu>
+      <LoginMenu
+        isLoggedIn={isLoggedIn}
+        onLogout={logoutHandler}
+        onLogin={loginHandler}
+      />
       <Footer />
     </React.Fragment>
   );
