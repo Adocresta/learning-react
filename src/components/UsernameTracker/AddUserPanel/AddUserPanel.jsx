@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 // Components
 import Card from "../../UI/Card";
-import Button from "../../UI/Button";
+import Button from "../../UI/ATagButton";
 import ErrorModal from "../../UI/ErrorModal";
 
 const AddUserPanel = (props) => {

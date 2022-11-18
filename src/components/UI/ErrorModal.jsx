@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 // Components
 import Card from "./Card";
-import Button from "./Button";
+import ATagButton from "./ATagButton";
 
 const Backdrop = (props) => {
   return (
@@ -29,12 +29,12 @@ const ModalOverlay = (props) => {
       </div>
       {/* error button */}
       <div className="p-4 flex justify-end">
-        <Button
+        <ATagButton
           onClick={props.onConfirmError}
           className="bg-slate-800 cursor-pointer hover:bg-slate-400"
         >
           Okay
-        </Button>
+        </ATagButton>
       </div>
     </Card>
   );

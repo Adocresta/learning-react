@@ -1,5 +1,5 @@
 // Components
-import Button from "./Button";
+import ATagButton from "./ATagButton";
 // Assets
 import logo from "../../assets/adocresta.svg";
 
@@ -16,19 +16,19 @@ export default function Header(props) {
         </div>
         <ul className="hidden md:flex flex-row space-x-5">
           <li>
-            <Button href="#" onClick={props.onShowExpenseTracker}>
+            <ATagButton href="#" onClick={props.onShowExpenseTracker}>
               Expense Tracker
-            </Button>
+            </ATagButton>
           </li>
           <li>
-            <Button href="#" onClick={props.onShowAbout}>
+            <ATagButton href="#" onClick={props.onShowAbout}>
               About
-            </Button>
+            </ATagButton>
           </li>
           <li>
-            <Button href="#" onClick={props.onShowAbout}>
+            <ATagButton href="#" onClick={props.onShowAbout}>
               Content
-            </Button>
+            </ATagButton>
           </li>
         </ul>
         {/* // !TODO: implement ||| button} */}

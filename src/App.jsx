@@ -10,6 +10,7 @@ import NewExpense from "./components/ExpenseTracker/NewExpense/NewExpense";
 // Username Tracker Components
 import AddUserPanel from "./components/UsernameTracker/AddUserPanel/AddUserPanel";
 import UsersDataList from "./components/UsernameTracker/UserDataList/UsersDataList";
+import LoginMenu from "./components/LoginMenu/LoginMenu";
 
 function App() {
   // Expense Tracker Datas
@@ -66,7 +67,6 @@ function App() {
   ]);
 
   const addNewUserDataHandler = (data) => {
-    console.log(data);
     setUserData((prevState) => {
       return [
         {
@@ -112,6 +112,7 @@ function App() {
       {showExpenseTracker && ExpenseTracker}
       <AddUserPanel onNewUserData={addNewUserDataHandler} />
       <UsersDataList usersData={userData} />
+      <LoginMenu></LoginMenu>
       <Footer />
     </React.Fragment>
   );
