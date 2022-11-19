@@ -10,6 +10,7 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState(true);
   const [formIsValid, setFormIsValid] = useState(false);
 
+  // BUG|Exploit detected you can enter the system with 6 or less characters now because of the setTimeout();
   useEffect(() => {
     const identifier = setTimeout(() => {
       setFormIsValid(
@@ -30,6 +31,7 @@ const Login = (props) => {
     setEnteredPassword(event.target.value);
   };
 
+  // Because we are depending on another state we should use useReducer. In Fact, We are technically violationg the rule of setState(()=>{}) (yet we still can't use it as only its own prevSate is available not other state's !)
   const validateEmailHandler = () => {
     setEmailIsValid(
       enteredEmail.includes("@") && enteredEmail.trim().length > 6
