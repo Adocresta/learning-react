@@ -1,50 +1,66 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 
+// useReducer funtions
+const emailReducer = (state, action) => {
+  if (action.type === "USER_INPUT") {
+    return { value: action.val, isValid: action.val.includes("@") };
+  }
+  if (action.type === "INPUT_BLUR") {
+    return { value: state.value, isValid: state.value.includes("@") };
+  }
+  return { value: "", isValid: false };
+};
+
+const passwordReducer = (state, action) => {
+  if (action.type === "USER_INPUT") {
+    return { value: action.val, isValid: action.val.trim().length > 6 };
+  }
+  if (action.type === "INPUT_BLUR") {
+    return { value: state.value, isValid: state.value.trim().length > 6 };
+  }
+  return { value: "", isValid: false };
+};
+
 const Login = (props) => {
-  const [enteredEmail, setEnteredEmail] = useState("");
-  const [emailIsValid, setEmailIsValid] = useState(true);
-  const [enteredPassword, setEnteredPassword] = useState("");
-  const [passwordIsValid, setPasswordIsValid] = useState(true);
+  // !BUG form doesn't turn true after we meet the condition right away, instead it waits the next input entered
   const [formIsValid, setFormIsValid] = useState(false);
 
-  // BUG|Exploit detected you can enter the system with 6 or less characters now because of the setTimeout();
-  useEffect(() => {
-    const identifier = setTimeout(() => {
-      setFormIsValid(
-        enteredEmail.includes("@") && enteredPassword.trim().length > 6
-      );
-    }, 500);
+  const [emailState, dispatchEmail] = useReducer(emailReducer, {
+    value: "",
+    isValid: null,
+  });
 
-    return () => {
-      clearTimeout(identifier);
-    };
-  }, [enteredEmail, enteredPassword]);
+  const [passwordState, dispatchPassword] = useReducer(passwordReducer, {
+    value: "",
+    isValid: null,
+  });
 
   const emailChangeHandler = (event) => {
-    setEnteredEmail(event.target.value);
+    dispatchEmail({ type: "USER_INPUT", val: event.target.value });
+
+    setFormIsValid(emailState.isValid && passwordState.isValid);
   };
 
   const passwordChangeHandler = (event) => {
-    setEnteredPassword(event.target.value);
+    dispatchPassword({ type: "USER_INPUT", val: event.target.value });
+
+    setFormIsValid(emailState.isValid && passwordState.isValid);
   };
 
-  // Because we are depending on another state we should use useReducer. In Fact, We are technically violationg the rule of setState(()=>{}) (yet we still can't use it as only its own prevSate is available not other state's !)
   const validateEmailHandler = () => {
-    setEmailIsValid(
-      enteredEmail.includes("@") && enteredEmail.trim().length > 6
-    );
+    dispatchEmail({ type: "INPUT_BLUR" });
   };
 
   const validatePasswordHandler = () => {
-    setPasswordIsValid(enteredPassword.trim().length > 6);
+    dispatchPassword({ type: "INPUT_BLUR" });
   };
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.onLogin(enteredEmail, enteredPassword);
+    props.onLogin(emailState.value, passwordState.value);
   };
 
   return (
@@ -61,11 +77,11 @@ const Login = (props) => {
             //  todo learn what is flex
             className={`block flex-[3] p-1 rounded-md border border-solid border-gray-400 ${
               //  background: #f6dbfc; for invalid?
-              !emailIsValid ? "bg-red-600 text-slate-300" : ""
+              emailState.isValid === false ? "bg-red-600 text-slate-300" : ""
             }`}
             type="email"
             id="email"
-            value={enteredEmail}
+            value={emailState.value}
             onChange={emailChangeHandler}
             onBlur={validateEmailHandler}
           />
@@ -80,11 +96,11 @@ const Login = (props) => {
           <input
             className={`block flex-[3] p-1 rounded-md border border-solid border-gray-400 ${
               //  background: #f6dbfc; for invalid?
-              !passwordIsValid ? "bg-red-600 text-slate-300" : ""
+              passwordState.isValid === false ? "bg-red-600 text-slate-300" : ""
             }`}
             type="password"
             id="password"
-            value={enteredPassword}
+            value={passwordState.value}
             onChange={passwordChangeHandler}
             onBlur={validatePasswordHandler}
           />
