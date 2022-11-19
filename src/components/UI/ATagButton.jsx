@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = (props) => {
+const ATagButton = (props) => {
   return (
     <a
       href={props.href}
@@ -13,4 +13,4 @@ const Button = (props) => {
   );
 };
 
-export default Button;
+export default ATagButton;

@@ -118,6 +118,7 @@ function App() {
 
   const loginHandler = (email, password) => {
     // check email and password
+
     localStorage.setItem("isLoggedIn", "1");
     setIsLoggedIn(true);
   };
