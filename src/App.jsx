@@ -109,7 +109,6 @@ function App() {
   // we used here to avoid infinite loop
   useEffect(() => {
     const storedUserLoggedInInformation = localStorage.getItem("isLoggedIn");
-    console.log(storedUserLoggedInInformation);
 
     if (storedUserLoggedInInformation === "1") {
       setIsLoggedIn(true);

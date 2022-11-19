@@ -9,10 +9,9 @@ import ExpensesChart from "./ExpensesChart";
 function Expenses(props) {
   // Destructuring in Objects
   const { expenses } = props;
-  const [selectedYearValue, setSelectedYearValue] = useState("2020");
+  const [selectedYearValue, setSelectedYearValue] = useState("2022");
 
   const yearFilterHandler = (selectedYear) => {
-    console.log(selectedYear);
     setSelectedYearValue(selectedYear);
     // !Dont create new array here👇 it uses old selectedYearValue instead pass year as parameter in jsx
   };
