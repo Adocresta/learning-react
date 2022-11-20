@@ -102,48 +102,17 @@ function App() {
 
   const AboutSection = <MainContent onShowMainContent={toggleAboutHandler} />;
 
-  // Login Menu
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // useEffect shines in data fetching
-  // we used here to avoid infinite loop
-  useEffect(() => {
-    const storedUserLoggedInInformation = localStorage.getItem("isLoggedIn");
-
-    if (storedUserLoggedInInformation === "1") {
-      setIsLoggedIn(true);
-    }
-  }, []);
-
-  const loginHandler = (email, password) => {
-    // check email and password
-
-    localStorage.setItem("isLoggedIn", "1");
-    setIsLoggedIn(true);
-  };
-
-  const logoutHandler = () => {
-    localStorage.removeItem("isLoggedIn");
-    setIsLoggedIn(false);
-  };
-
   return (
     <React.Fragment>
       <Header
         onShowExpenseTracker={toggleExpenseTracker}
         onShowAbout={toggleAboutHandler}
-        isLoggedIn={isLoggedIn}
-        onLogout={logoutHandler}
       />
       {showAbout && AboutSection}
       {showExpenseTracker && ExpenseTracker}
       <AddUserPanel onNewUserData={addNewUserDataHandler} />
       <UsersDataList usersData={userData} />
-      <LoginMenu
-        isLoggedIn={isLoggedIn}
-        onLogout={logoutHandler}
-        onLogin={loginHandler}
-      />
+      <LoginMenu />
       <Footer />
     </React.Fragment>
   );

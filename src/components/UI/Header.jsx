@@ -1,9 +1,15 @@
+import { useContext, useState } from "react";
 // Components
 import ATagButton from "./ATagButton";
 // Assets
 import logo from "../../assets/adocresta.svg";
+// Context
+import AuthContext from "../context/auth-context";
 
 export default function Header(props) {
+  const ctx = useContext(AuthContext);
+  console.log(ctx);
+
   return (
     <header className="container mx-auto px-6 py-2 border border-black border-solid shadow-header-shadow">
       <nav className="flex flex-row items-center justify-between">
@@ -30,11 +36,9 @@ export default function Header(props) {
               Content
             </ATagButton>
           </li>
-          {props.isLoggedIn ? (
+          {ctx.isLoggedIn ? (
             <li>
-              <ATagButton href="#" onClick={props.onLogout}>
-                Sign Out
-              </ATagButton>
+              <ATagButton href="#">Sign Out</ATagButton>
             </li>
           ) : null}
         </ul>
