@@ -38,7 +38,9 @@ export default function Header(props) {
           </li>
           {ctx.isLoggedIn ? (
             <li>
-              <ATagButton href="#">Sign Out</ATagButton>
+              <ATagButton href="#" onClick={ctx.onLogout}>
+                Sign Out
+              </ATagButton>
             </li>
           ) : null}
         </ul>

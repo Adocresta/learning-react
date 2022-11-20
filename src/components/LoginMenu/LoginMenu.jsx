@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AuthContext from "../context/auth-context";
+import Header from "../UI/Header";
 
 // components
 import Home from "./Home";
@@ -32,7 +33,10 @@ function LoginMenu(props) {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn: isLoggedIn }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn: isLoggedIn, onLogout: logoutHandler }}
+    >
+      <Header></Header>
       {!isLoggedIn && <Login onLogin={loginHandler} />}
       {isLoggedIn && <Home onLogout={logoutHandler} />}
     </AuthContext.Provider>
