@@ -25,7 +25,6 @@ const passwordReducer = (state, action) => {
 };
 
 const Login = (props) => {
-  // !BUG form doesn't turn true after we meet the condition right away, instead it waits the next input entered
   const [formIsValid, setFormIsValid] = useState(false);
 
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
@@ -38,20 +37,31 @@ const Login = (props) => {
     isValid: null,
   });
 
+  // object destructuring is very important with useReducer concept
+  const { isValid: emailIsValid } = emailState;
+  const { isValid: passwordIsValid } = passwordState;
+
   useEffect(() => {
     setFormIsValid(emailState.isValid && passwordState.isValid);
-  }, [emailState, passwordState]);
+    console.log("check");
+    // *NOTE: TIMER WAY OF DOING THE SAME THING BUT IT'S BUGGY FOR THIS MOCK APP (CUZ YOU CAN ENTER THE SYSTEM WITH 6 Character PASSWORDS)
+    // const identifier = setTimeout(() => {
+    //   console.log("Checking form validity!");
+    //   setFormIsValid(emailState.isValid && passwordState.isValid);
+    // }, 0);
+
+    // return () => {
+    //   console.log("CLEANUP");
+    //   clearTimeout(identifier);
+    // };
+  }, [emailIsValid, passwordIsValid]);
 
   const emailChangeHandler = (event) => {
     dispatchEmail({ type: "USER_INPUT", val: event.target.value });
-
-    // setFormIsValid(emailState.isValid && passwordState.isValid);
   };
 
   const passwordChangeHandler = (event) => {
     dispatchPassword({ type: "USER_INPUT", val: event.target.value });
-
-    // setFormIsValid(emailState.isValid && passwordState.isValid);
   };
 
   const validateEmailHandler = () => {
