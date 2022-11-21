@@ -11,6 +11,7 @@ import NewExpense from "./components/ExpenseTracker/NewExpense/NewExpense";
 import AddUserPanel from "./components/UsernameTracker/AddUserPanel/AddUserPanel";
 import UsersDataList from "./components/UsernameTracker/UserDataList/UsersDataList";
 import LoginMenu from "./components/LoginMenu/LoginMenu";
+import { AuthContextProvider } from "./components/context/auth-context";
 
 function App() {
   // Expense Tracker Datas
@@ -103,7 +104,7 @@ function App() {
   const AboutSection = <MainContent onShowMainContent={toggleAboutHandler} />;
 
   return (
-    <React.Fragment>
+    <AuthContextProvider>
       <Header
         onShowExpenseTracker={toggleExpenseTracker}
         onShowAbout={toggleAboutHandler}
@@ -114,7 +115,7 @@ function App() {
       <UsersDataList usersData={userData} />
       <LoginMenu />
       <Footer />
-    </React.Fragment>
+    </AuthContextProvider>
   );
 }
 

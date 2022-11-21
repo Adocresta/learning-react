@@ -4,10 +4,10 @@ import ATagButton from "./ATagButton";
 // Assets
 import logo from "../../assets/adocresta.svg";
 // Context
-import AuthContext from "../context/auth-context";
+import AuthContextProvider from "../context/auth-context";
 
 export default function Header(props) {
-  const ctx = useContext(AuthContext);
+  const ctx = useContext(AuthContextProvider);
   console.log(ctx);
 
   return (
