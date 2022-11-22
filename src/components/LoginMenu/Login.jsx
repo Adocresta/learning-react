@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useReducer, useState } from "react";
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
-import AuthContext from "../context/auth-context";
+import AuthContext from "../../context/auth-context";
 
 // useReducer funtions
 const emailReducer = (state, action) => {
@@ -43,7 +43,7 @@ const Login = (props) => {
   const { isValid: passwordIsValid } = passwordState;
 
   useEffect(() => {
-    setFormIsValid(emailState.isValid && passwordState.isValid);
+    setFormIsValid(emailIsValid && passwordIsValid);
     console.log("check");
     // *NOTE: TIMER WAY OF DOING THE SAME THING BUT IT'S BUGGY FOR THIS MOCK APP (CUZ YOU CAN ENTER THE SYSTEM WITH 6 Character PASSWORDS)
     // const identifier = setTimeout(() => {

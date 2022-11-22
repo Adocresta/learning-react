@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 // UI Components
 import Header from "./components/UI/Header";
-import MainContent from "./components/MainContent";
+import ContentInfo from "./components/UI/ContentInfo";
 import Footer from "./components/UI/Footer";
 // Expense Tracker Components
 import Expenses from "./components/ExpenseTracker/Expenses/Expenses";
@@ -11,7 +11,6 @@ import NewExpense from "./components/ExpenseTracker/NewExpense/NewExpense";
 import AddUserPanel from "./components/UsernameTracker/AddUserPanel/AddUserPanel";
 import UsersDataList from "./components/UsernameTracker/UserDataList/UsersDataList";
 import LoginMenu from "./components/LoginMenu/LoginMenu";
-import { AuthContextProvider } from "./components/context/auth-context";
 
 function App() {
   // Expense Tracker Datas
@@ -101,21 +100,32 @@ function App() {
     setShowAbout((prevState) => !prevState);
   };
 
-  const AboutSection = <MainContent onShowMainContent={toggleAboutHandler} />;
+  const AboutSection = <ContentInfo onShowMainContent={toggleAboutHandler} />;
+
+  const [showUserList, setShowUserList] = useState(false);
+
+  const toggleUserList = () => {
+    setShowUserList((prevState) => !prevState);
+  };
 
   return (
-    <AuthContextProvider>
+    <React.Fragment>
       <Header
         onShowExpenseTracker={toggleExpenseTracker}
         onShowAbout={toggleAboutHandler}
+        onShowUserList={toggleUserList}
       />
-      {showAbout && AboutSection}
-      {showExpenseTracker && ExpenseTracker}
-      <AddUserPanel onNewUserData={addNewUserDataHandler} />
-      <UsersDataList usersData={userData} />
+      {showAbout ? AboutSection : null}
+      {showExpenseTracker ? ExpenseTracker : null}
       <LoginMenu />
+      {showUserList ? (
+        <>
+          <AddUserPanel onNewUserData={addNewUserDataHandler} />
+          <UsersDataList usersData={userData} />{" "}
+        </>
+      ) : null}
       <Footer />
-    </AuthContextProvider>
+    </React.Fragment>
   );
 }
 
