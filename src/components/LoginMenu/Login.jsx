@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useReducer, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "react";
 
 import Card from "../UI/Card";
 import Button from "../UI/Button";
@@ -26,9 +32,11 @@ const passwordReducer = (state, action) => {
   return { value: "", isValid: false };
 };
 
-const Login = (props) => {
+const Login = () => {
+  // states \\
   const [formIsValid, setFormIsValid] = useState(false);
 
+  // reducers \\
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
     value: "",
     isValid: null,
@@ -39,22 +47,33 @@ const Login = (props) => {
     isValid: null,
   });
 
-  // object destructuring is very important with useReducer concept
+  // refs \\
+  const loginRef = useRef();
+  const emailRef = useRef();
+
+  // object destructuring is very important with useReducer concept \\
   const { isValid: emailIsValid } = emailState;
   const { isValid: passwordIsValid } = passwordState;
 
+  // side effects \\
   useEffect(() => {
     setFormIsValid(emailIsValid && passwordIsValid);
-    // *NOTE: TIMER WAY OF DOING THE SAME THING BUT IT'S BUGGY FOR THIS MOCK APP (CUZ YOU CAN ENTER THE SYSTEM WITH 6 Character PASSWORDS)
-    // const identifier = setTimeout(() => {
-    //   console.log("Checking form validity!");
-    //   setFormIsValid(emailState.isValid && passwordState.isValid);
-    // }, 0);
 
-    // return () => {
-    //   console.log("CLEANUP");
-    //   clearTimeout(identifier);
-    // };
+    // *NOTE: TIMER WAY OF DOING THE SAME THING \\
+    // *BUT IT'S BUGGY FOR THIS MOCK APP \\
+    // *(CUZ YOU CAN ENTER THE SYSTEM WITH 6 Character PASSWORDS) \\
+
+    /* 
+    const identifier = setTimeout(() => {
+      console.log("Checking form validity!");
+      setFormIsValid(emailState.isValid && passwordState.isValid);
+    }, 500);
+    // return fuction doesn't run on initial render (it's like do-while loop) \\
+    return () => {
+      console.log("CLEANUP");
+      clearTimeout(identifier);
+    }; 
+    */
   }, [emailIsValid, passwordIsValid]);
 
   const authCtx = useContext(AuthContext);
@@ -77,13 +96,20 @@ const Login = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    authCtx.onLogin(emailState.value, passwordState.value);
+    if (formIsValid) {
+      authCtx.onLogin(emailState.value, passwordState.value);
+    } else if (!emailIsValid) {
+      loginRef.current.focus();
+    } else {
+      emailRef.current.focus();
+    }
   };
 
   return (
     <Card className="container w-11/12 max-w-2xl mx-auto my-4 p-8">
       <form onSubmit={submitHandler}>
         <LoginFormInput
+          ref={loginRef}
           isValid={emailState.isValid}
           value={emailState.value}
           id="email"
@@ -94,6 +120,7 @@ const Login = (props) => {
           E-Mail
         </LoginFormInput>
         <LoginFormInput
+          ref={emailRef}
           isValid={passwordState.isValid}
           value={passwordState.value}
           id="password"
@@ -107,7 +134,7 @@ const Login = (props) => {
           <Button
             type="submit"
             className="disabled:bg-slate-500"
-            disabled={!formIsValid}
+            // disabled={!formIsValid}e
           >
             Login
           </Button>
